@@ -8,21 +8,69 @@
         <link rel="stylesheet" type="text/css" href="../default.css" />
     </head>
     <body>
-        <h1>Bubble Watch</h1>
-        <img src="front.jpg" />
-        <p>
-            Digital wristwatch using a HP bubble LED display and an Adafruit Feather M0. 
-            Includes a 3D-printed case that fits most watch bands.
-        </p>
-        <h2>Parts</h2>
-        <ul>
-            <li>Adafruit Feather M0 basic proto</li>
-            <li>7 330Ohm resistors, 1/4 or less (1/8 could make it more compact)</li>
-            <li>HP QDSP-6064 4 digit seven segment LED display</li>
-            <li>100mAh LiPo battery</li>
-            <li>replacement watch wristband with spring pins</li>
-        </ul>
-        <p>Inside pictures and schematic coming soon!</p>
-        <!--img src="inside.jpg" /-->
+        <header>
+            <h1>Bubble Watch</h1>
+            <p>
+                Digital wristwatch using a HP bubble LED display and an Adafruit Feather M0. 
+                Includes a 3D-printed case that fits most watch bands.
+            </p>
+        </header>
+        <section>
+            <h2>Operation</h2>
+            <img src="front.jpg" />
+            <p>(Sorry, my phone doesn't handle glowy things very well.)<p>
+            <p>
+            The watch sleeps until you push the button. 
+            It then cycles through the time, day, and date, then shuts off again.
+            The time is set over the USB serial connection. 
+            Send the time as a UTC Unix timestamp, such as with the command `date +%s`.
+            The frimware is set for US Eastern Standard Time, and automatically adjusts to Daylight Savings for that timezone.
+            To change the timezone, find this block:
+            <pre>
+//offset from UTC in hours, change as appropriate for your local timezone.
+#define NORM_OFF -5
+#define DST_OFF -4
+            </pre>
+            Replace the number next to NORM_OFF with the UTC offset for your timezone, 
+            and the one next DST_OFF with the offset plus one. 
+            For timezones that don't observe DST, or use different rules, 
+            more changes may be necessary.
+            </p>
+        </section>
+        <section>
+            <h2>Parts</h2>
+            <img src="disassembled.jpg" />
+            <ul>
+                <li>Adafruit Feather M0 basic proto</li>
+                <li>(7) 330Ohm resistors, 1/4 or less (1/8 could make it more compact)</li>
+                <li>HP QDSP-6064 4 digit seven segment LED display</li>
+                <li>100mAh LiPo battery</li>
+                <li>2-pin mini tac-switch</li>
+                <li>replacement watch wristband with spring pins</li>
+            </ul>
+            <p>
+                The resistors are connected in-line with the segment pins of the display. 
+                The battery just connects to the JST socket on the board if you're using an Adafruit battery.
+                To fit everything in the prototyping area took very careful soldering, and to solder the parts in a particular order. 
+                I don't remeber what that order was, so good luck!
+            </p>
+        </section>
+        <section>
+            <h2>3D Printing</h2>
+            <img src="model.png" />
+            <p>
+                The model is saved in OpenSCAD format, and is in units of millimeters. 
+                It should print without supports, and fits on a 100mmx100mm bed. 
+                Mine was printed in black PLA on a PrintrBot Simple Maker Edition.
+                The circuit board should press fit into the front of the case. 
+                The back then presses into the front part and the pcb mounting holes.
+            </p>
+        </section>
+        <section>
+            <h2>More Photos</h2>
+            <img src="board-front.jpg" />
+            <img src="opened.jpg" />
+        </section>
+        <a href="../">More Projects</a>
     </body>
 </html>

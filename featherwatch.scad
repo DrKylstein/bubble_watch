@@ -34,7 +34,7 @@ module shape() {
 }
 
 //back
-!translate([0,40*mm,0]) { 
+translate([0,40*mm,0]) { 
     translate([0,1,0]*(board_dim[1] + jst_clearance[1])) scale([1,-1,1])
     difference() {
         linear_extrude(walls) offset(r=-tolerance) shape();
