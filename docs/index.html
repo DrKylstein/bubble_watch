@@ -22,8 +22,11 @@
             <p>
             The watch sleeps until you push the button. 
             It then cycles through the time, day, and date, then shuts off again.
+            The battery lasts about 3-4 days between recharges.
             The time is set over the USB serial connection. 
             Send the time as a UTC Unix timestamp, such as with the command `date +%s`.
+            </p>
+            <p>
             The frimware is set for US Eastern Standard Time, and automatically adjusts to Daylight Savings for that timezone.
             To change the timezone, find this block:
             <pre>
